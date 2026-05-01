@@ -152,7 +152,7 @@ function Hero({ lang }) {
             </a>
           </div>
         </div>
-        <div className="hero-visual" style={{ gap: "46px" }}>
+        <div className="hero-visual">
           <div className="hero-photo-wrap">
             <img
               src="uploads/PortafolioPhoto.PNG"

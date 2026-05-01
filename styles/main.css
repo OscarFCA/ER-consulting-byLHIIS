@@ -9,7 +9,7 @@
 
 /* ── RESET & BASE ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; max-width: 100%; }
 
 body {
   background: #0B0F1A;
@@ -17,6 +17,7 @@ body {
   font-family: 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* ── CSS VARIABLES ───────────────────────────────────────────── */
@@ -67,6 +68,8 @@ body {
   text-transform: uppercase;
   color: #EC4899;
   margin-bottom: 12px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .section-title {
@@ -335,7 +338,10 @@ body {
   z-index: 1;
 }
 
-.hero-content { display: flex; flex-direction: column; gap: 24px; }
+/* Prevent grid/flex children from overflowing their tracks */
+.hero-grid > * { min-width: 0; }
+
+.hero-content { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
 
 .hero-h1 {
   font-family: 'Montserrat', sans-serif;
@@ -397,9 +403,11 @@ body {
 .hero-visual {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 32px;
   align-items: center;
   position: relative;
+  min-width: 0;
+  width: 100%;
 }
 
 .hero-photo-wrap {
@@ -562,6 +570,9 @@ body {
 .section-inner {
   max-width: 1280px;
   margin: 0 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* alternating subtle bg */
@@ -1587,6 +1598,7 @@ body {
 /* Mobile large · ≤ 480px (iPhone Plus, Pixel, Galaxy) */
 @media (max-width: 480px) {
   .nav { padding: 0 16px; }
+  .eyebrow { letter-spacing: 0.08em; white-space: normal; overflow-wrap: break-word; }
 
   .section { padding: 60px 16px; }
   .hero { padding: 88px 16px 56px; }
