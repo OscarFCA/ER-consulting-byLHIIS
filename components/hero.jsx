@@ -128,7 +128,7 @@ function Hero({ lang }) {
       <div className="hero-grid">
         <div className="hero-content">
           <div className="eyebrow">{tx.eyebrow}</div>
-          <h1 className="hero-h1" style={{ width: "580.451px" }}>
+          <h1 className="hero-h1" style={{ maxWidth: "580px" }}>
             <span>{tx.h1a} </span>
             <span className="grad-text">{tx.h1b}</span>
             <br />
@@ -158,7 +158,7 @@ function Hero({ lang }) {
               src="uploads/PortafolioPhoto.PNG"
               alt="Elías Rico"
               className="hero-photo"
-              loading="eager" style={{ borderRadius: "20px 20px 2px", width: "378.889px", height: "378.889px" }} />
+              loading="eager" style={{ borderRadius: "20px 20px 2px" }} />
             
             <div className="hero-photo-glow"></div>
           </div>
