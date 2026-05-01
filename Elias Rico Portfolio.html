@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elías Rico — AI & Innovation Strategist</title>
+  <meta name="description" content="Consultoría de IA y estrategia para founders, directores y C-suite. Ciudad de México." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/main.css" />
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <style>
+    /* Page scroll container */
+    html, body { height: 100%; }
+    #page-root {
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    /* Dot grid background texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(rgba(168,85,247,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    #page-root > * { position: relative; z-index: 1; }
+    /* Loading state */
+    #loading {
+      position: fixed; inset: 0;
+      background: #0B0F1A;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    #loading.hidden { opacity: 0; pointer-events: none; }
+    .loading-logo {
+      width: 60px; height: 60px;
+      animation: loading-pulse 1.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(236,72,153,0.8));
+    }
+    @keyframes loading-pulse {
+      0%, 100% { transform: scale(0.95); opacity: 0.7; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading screen -->
+  <div id="loading">
+    <img src="uploads/Logo.PNG" alt="Loading" class="loading-logo" style="border-radius: 6px" />
+  </div>
+
+  <div id="page-root">
+    <div id="app"></div>
+  </div>
+
+  <!-- Components -->
+  <script type="text/babel" src="components/nav.jsx"></script>
+  <script type="text/babel" src="components/hero.jsx"></script>
+  <script type="text/babel" src="components/sections.jsx"></script>
+
+  <!-- Tweaks Panel -->
+  <script type="text/babel">
+    // ── TWEAKS PANEL ────────────────────────────────────────────
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "accentColor": "#A855F7",
+      "glowIntensity": "medium",
+      "animSpeed": "normal",
+      "showPixelAvatar": true,
+      "chatWidgetVisible": true
+    }/*EDITMODE-END*/;
+
+    function TweaksPanel({ tweaks, setTweak, onClose }) {
+      const glowOpts = ['low','medium','high'];
+      const speedOpts = ['slow','normal','fast'];
+      return (
+        <div style={{
+          position: 'fixed', bottom: '24px', right: '24px',
+          width: '280px',
+          background: 'rgba(15,21,37,0.95)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(168,85,247,0.3)',
+          borderTop: '1px solid rgba(255,255,255,0.15)',
+          borderRadius: '16px',
+          padding: '20px',
+          zIndex: 9999,
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '11px',
+          color: 'rgba(229,231,235,0.7)',
+          boxShadow: '0 8px 40px rgba(0,0,0,0.6), 0 0 40px rgba(109,40,217,0.2)',
+        }}>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'16px'}}>
+            <span style={{color:'#A855F7',letterSpacing:'0.15em',textTransform:'uppercase'}}>Tweaks</span>
+            <button onClick={onClose} style={{background:'none',border:'none',color:'rgba(255,255,255,0.4)',cursor:'pointer',fontSize:'16px',lineHeight:1}}>×</button>
+          </div>
+
+          {/* Glow intensity */}
+          <div style={{marginBottom:'14px'}}>
+            <div style={{marginBottom:'6px',color:'rgba(236,72,153,0.8)'}}>GLOW INTENSITY</div>
+            <div style={{display:'flex',gap:'6px'}}>
+              {glowOpts.map(o => (
+                <button key={o} onClick={() => setTweak('glowIntensity', o)} style={{
+                  flex:1, padding:'5px 0', borderRadius:'6px', cursor:'pointer',
+                  border: tweaks.glowIntensity === o ? '1px solid #A855F7' : '1px solid rgba(255,255,255,0.1)',
+                  background: tweaks.glowIntensity === o ? 'rgba(168,85,247,0.2)' : 'transparent',
+                  color: tweaks.glowIntensity === o ? '#A855F7' : 'rgba(255,255,255,0.4)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '10px', textTransform:'uppercase', letterSpacing:'0.05em',
+                }}>{o}</button>
+              ))}
+            </div>
+          </div>
+
+          {/* Animation speed */}
+          <div style={{marginBottom:'14px'}}>
+            <div style={{marginBottom:'6px',color:'rgba(236,72,153,0.8)'}}>ANIM SPEED</div>
+            <div style={{display:'flex',gap:'6px'}}>
+              {speedOpts.map(o => (
+                <button key={o} onClick={() => setTweak('animSpeed', o)} style={{
+                  flex:1, padding:'5px 0', borderRadius:'6px', cursor:'pointer',
+                  border: tweaks.animSpeed === o ? '1px solid #A855F7' : '1px solid rgba(255,255,255,0.1)',
+                  background: tweaks.animSpeed === o ? 'rgba(168,85,247,0.2)' : 'transparent',
+                  color: tweaks.animSpeed === o ? '#A855F7' : 'rgba(255,255,255,0.4)',
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '10px', textTransform:'uppercase', letterSpacing:'0.05em',
+                }}>{o}</button>
+              ))}
+            </div>
+          </div>
+
+          {/* Show pixel avatar */}
+          <div style={{marginBottom:'14px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+            <span style={{color:'rgba(236,72,153,0.8)'}}>PIXEL AVATAR</span>
+            <button onClick={() => setTweak('showPixelAvatar', !tweaks.showPixelAvatar)} style={{
+              width:'40px',height:'22px',borderRadius:'999px',cursor:'pointer',
+              background: tweaks.showPixelAvatar ? 'linear-gradient(135deg,#EC4899,#6D28D9)' : 'rgba(255,255,255,0.1)',
+              border:'none',position:'relative',transition:'background 0.3s',
+            }}>
+              <div style={{
+                position:'absolute',top:'3px',
+                left: tweaks.showPixelAvatar ? '20px' : '3px',
+                width:'16px',height:'16px',borderRadius:'50%',
+                background:'#fff',transition:'left 0.3s',
+              }}></div>
+            </button>
+          </div>
+
+          {/* Chat widget */}
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+            <span style={{color:'rgba(236,72,153,0.8)'}}>CHAT WIDGET</span>
+            <button onClick={() => setTweak('chatWidgetVisible', !tweaks.chatWidgetVisible)} style={{
+              width:'40px',height:'22px',borderRadius:'999px',cursor:'pointer',
+              background: tweaks.chatWidgetVisible ? 'linear-gradient(135deg,#EC4899,#6D28D9)' : 'rgba(255,255,255,0.1)',
+              border:'none',position:'relative',transition:'background 0.3s',
+            }}>
+              <div style={{
+                position:'absolute',top:'3px',
+                left: tweaks.chatWidgetVisible ? '20px' : '3px',
+                width:'16px',height:'16px',borderRadius:'50%',
+                background:'#fff',transition:'left 0.3s',
+              }}></div>
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    // ── MAIN APP ─────────────────────────────────────────────────
+    function App() {
+      const [lang, setLang] = React.useState('es');
+      const [tweaks, setTweakState] = React.useState(TWEAK_DEFAULTS);
+      const [showTweaks, setShowTweaks] = React.useState(false);
+
+      const setTweak = (key, value) => {
+        setTweakState(prev => {
+          const next = typeof key === 'object' ? {...prev,...key} : {...prev,[key]:value};
+          window.parent.postMessage({ type: '__edit_mode_set_keys', edits: next }, '*');
+          return next;
+        });
+      };
+
+      // Tweaks protocol
+      React.useEffect(() => {
+        const handler = (e) => {
+          if (e.data?.type === '__activate_edit_mode') setShowTweaks(true);
+          if (e.data?.type === '__deactivate_edit_mode') setShowTweaks(false);
+        };
+        window.addEventListener('message', handler);
+        window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+        return () => window.removeEventListener('message', handler);
+      }, []);
+
+      // Apply glow intensity via CSS var
+      React.useEffect(() => {
+        const intensityMap = { low: '0.2', medium: '0.35', high: '0.55' };
+        document.querySelectorAll('.hero-glow').forEach(el => {
+          el.style.opacity = intensityMap[tweaks.glowIntensity] || '0.35';
+        });
+      }, [tweaks.glowIntensity]);
+
+      // Apply anim speed
+      React.useEffect(() => {
+        const speedMap = { slow: '12s', normal: '6s', fast: '2s' };
+        document.querySelectorAll('.anim-bar').forEach(el => {
+          el.style.transition = `height ${speedMap[tweaks.animSpeed] || '0.8s'} cubic-bezier(0.4,0,0.2,1)`;
+        });
+      }, [tweaks.animSpeed]);
+
+      // Fade-up on scroll
+      React.useEffect(() => {
+        const els = document.querySelectorAll('.section, .bento-card, .project-card, .blog-card, .stage-card, .faq-item, .logo-chip');
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              e.target.style.opacity = '1';
+              e.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        setTimeout(() => {
+          document.querySelectorAll('.bento-card, .project-card, .blog-card, .stage-card, .faq-item, .logo-chip').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = `opacity 0.6s ease ${i * 0.06}s, transform 0.6s ease ${i * 0.06}s`;
+            obs.observe(el);
+          });
+        }, 100);
+
+        return () => obs.disconnect();
+      }, [lang]);
+
+      // Nav scroll detection for page-root container
+      React.useEffect(() => {
+        const root = document.getElementById('page-root');
+        const nav = document.getElementById('main-nav');
+        if (!root || !nav) return;
+        const onScroll = () => {
+          if (root.scrollTop > 50) nav.classList.add('nav-scrolled');
+          else nav.classList.remove('nav-scrolled');
+        };
+        root.addEventListener('scroll', onScroll, { passive: true });
+        return () => root.removeEventListener('scroll', onScroll);
+      }, []);
+
+      // Smooth nav links via page-root
+      React.useEffect(() => {
+        const root = document.getElementById('page-root');
+        const handleClick = (e) => {
+          const a = e.target.closest('a[href^="#"]');
+          if (!a) return;
+          e.preventDefault();
+          const target = document.querySelector(a.getAttribute('href'));
+          if (target && root) {
+            root.scrollTo({ top: target.offsetTop - 68, behavior: 'smooth' });
+          }
+        };
+        document.addEventListener('click', handleClick);
+        return () => document.removeEventListener('click', handleClick);
+      }, []);
+
+      // Hide loading screen
+      React.useEffect(() => {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          setTimeout(() => loading.classList.add('hidden'), 600);
+        }
+      }, []);
+
+      return (
+        <React.Fragment>
+          <Nav lang={lang} setLang={setLang} />
+          <Hero lang={lang} tweaks={tweaks} />
+          <Ecosistema lang={lang} />
+          <PropuestaValor lang={lang} />
+          <Proyectos lang={lang} />
+          <Blog lang={lang} />
+          <SobreMi lang={lang} tweaks={tweaks} />
+          <ParaQuien lang={lang} />
+          <FAQ lang={lang} />
+          <CTAFinal lang={lang} />
+          <Footer lang={lang} />
+          {showTweaks && (
+            <TweaksPanel
+              tweaks={tweaks}
+              setTweak={setTweak}
+              onClose={() => {
+                setShowTweaks(false);
+                window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+              }}
+            />
+          )}
+        </React.Fragment>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(<App />);
+  </script>
+
+</body>
+</html>
