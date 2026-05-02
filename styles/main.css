@@ -1571,7 +1571,7 @@ body {
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .blog-grid { grid-template-columns: repeat(2, 1fr); }
   .sobre-grid { grid-template-columns: 1fr; }
-  .sobre-photo-col { max-width: 300px; margin: 0 auto; }
+  .sobre-photo-col { width: 100%; max-width: 380px; margin: 0 auto; }
   .stages-grid { grid-template-columns: 1fr; }
   .lhiis-block { flex-direction: column; align-items: center; gap: 28px; text-align: center; }
   .lhiis-content { align-items: center; }
@@ -1617,7 +1617,7 @@ body {
   .blog-grid { grid-template-columns: 1fr; }
   .stages-grid { grid-template-columns: 1fr; }
 
-  .sobre-photo-col { max-width: 260px; }
+  .sobre-photo-col { width: 100%; max-width: 340px; margin: 0 auto; }
 
   .lhiis-block { padding: 28px 24px; }
   .lhiis-title { font-size: 22px; }
@@ -1678,7 +1678,7 @@ body {
   .section-title { font-size: 22px; }
   .section-sub { font-size: 14px; }
 
-  .sobre-photo-col { max-width: 220px; }
+  .sobre-photo-col { width: 100%; max-width: 300px; }
   .lhiis-title { font-size: 18px; }
 
   .interest-chip { font-size: 11px; padding: 5px 10px; }
