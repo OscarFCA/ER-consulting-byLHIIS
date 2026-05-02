@@ -546,7 +546,7 @@ function CTAFinal({ lang }) {
           </div>
           <div className="cta-divider mono-label">o</div>
           <div className="cta-option">
-            <a href="https://lhiis.com" target="_blank" rel="noopener" className="btn-secondary btn-lg"
+            <a href="https://oscarfca.github.io/LHIIS-web/#" target="_blank" rel="noopener" className="btn-secondary btn-lg"
               onClick={() => gtag('event', 'cta_click', { cta_location: 'cta_final', cta_label: 'ver_lhiis' })}>{tx.btnB}</a>
             <p className="cta-desc mono-label">{tx.descB}</p>
           </div>
@@ -576,7 +576,7 @@ function Footer({ lang }) {
           <a href="https://linkedin.com/in/elias-rc" target="_blank" rel="noopener" className="footer-link">LinkedIn</a>
           <a href="https://twitter.com/_helios_rc" target="_blank" rel="noopener" className="footer-link">Twitter/X</a>
           <a href="https://substack.com/@heliosrc" target="_blank" rel="noopener" className="footer-link">Substack</a>
-          <a href="https://lhiis.com" target="_blank" rel="noopener" className="footer-link">LHIIS</a>
+          <a href="https://oscarfca.github.io/LHIIS-web/#" target="_blank" rel="noopener" className="footer-link">LHIIS</a>
         </div>
         <div className="footer-tagline mono-label">{tagline}</div>
         <div className="footer-copy mono-label">{copy}</div>
