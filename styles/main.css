@@ -817,16 +817,7 @@ body {
 }
 
 .lhiis-gradient-border {
-  border-image: linear-gradient(135deg, rgba(236,72,153,0.4), rgba(109,40,217,0.4)) 1;
-  border-image-slice: 1;
-  border-radius: 0;
-}
-
-/* Workaround: use outline for gradient border with radius */
-.lhiis-block {
-  border: 1px solid transparent;
-  background-clip: padding-box;
-  box-shadow: 0 0 0 1px rgba(168,85,247,0.25), var(--shadow-z), 0 0 60px rgba(109,40,217,0.2);
+  /* intentionally empty — glass-card handles border */
 }
 
 .lhiis-content { flex: 1; display: flex; flex-direction: column; gap: 16px; }
