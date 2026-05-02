@@ -158,7 +158,7 @@ function Hero({ lang }) {
               src="uploads/PortafolioPhoto.PNG"
               alt="Elías Rico"
               className="hero-photo"
-              loading="eager" style={{ borderRadius: "20px 20px 2px" }} />
+              loading="eager" />
             
             <div className="hero-photo-glow"></div>
           </div>
