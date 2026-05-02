@@ -111,7 +111,7 @@ function Hero({ lang }) {
     },
     en: {
       eyebrow: 'AI & Innovation Strategist · Mexico City',
-      h1a: 'Your company is already',
+      h1a: 'Your company is',
       h1b: 'ready for AI.',
       h1c: '... the problem is nobody has told you where to start.',
       sub: 'Every stage of your company has different pains and different tools that solve them. I identify which ones are yours and have the technical team that implements them.',
