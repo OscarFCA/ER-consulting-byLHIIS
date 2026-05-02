@@ -403,7 +403,7 @@ body {
 .hero-visual {
   position: relative;
   width: 100%;
-  height: clamp(560px, 62vw, 700px);
+  height: clamp(640px, 68vw, 780px);
   min-width: 0;
 }
 
@@ -444,7 +444,6 @@ body {
   z-index: 2;
   width: 100%;
   max-width: 380px;
-  max-height: 290px;
   padding: 0;
   overflow: hidden;
 }
@@ -1560,9 +1559,9 @@ body {
 /* Tablet landscape · ≤ 1024px */
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-visual { height: 580px; max-width: 600px; margin: 0 auto; }
-  .hero-photo-wrap { width: 80%; height: 93%; }
-  .hero-chat-widget { max-width: 340px; max-height: 270px; }
+  .hero-visual { height: 680px; max-width: 600px; margin: 0 auto; }
+  .hero-photo-wrap { width: 80%; height: 90%; }
+  .hero-chat-widget { max-width: 340px; }
   .bento-3col { grid-template-columns: repeat(2, 1fr); }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .blog-grid { grid-template-columns: repeat(2, 1fr); }
