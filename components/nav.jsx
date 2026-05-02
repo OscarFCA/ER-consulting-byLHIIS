@@ -68,7 +68,8 @@ function Nav({ lang, setLang }) {
           </button>
 
           {/* CTA desktop */}
-          <a href="https://wa.me/5215531650560" target="_blank" rel="noopener" className="btn-primary nav-cta">
+          <a href="https://wa.me/5215531650560" target="_blank" rel="noopener" className="btn-primary nav-cta"
+            onClick={() => gtag('event', 'cta_click', { cta_location: 'nav', cta_label: 'whatsapp' })}>
             {tx.cta}
           </a>
 
@@ -106,7 +107,8 @@ function Nav({ lang, setLang }) {
                 <button className={`drawer-lang-btn ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>ES</button>
                 <button className={`drawer-lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
               </div>
-              <a href="https://wa.me/5215531650560" target="_blank" rel="noopener" className="btn-primary btn-halo drawer-cta">
+              <a href="https://wa.me/5215531650560" target="_blank" rel="noopener" className="btn-primary btn-halo drawer-cta"
+                onClick={() => gtag('event', 'cta_click', { cta_location: 'nav_mobile', cta_label: 'whatsapp' })}>
                 {tx.cta} →
               </a>
             </div>

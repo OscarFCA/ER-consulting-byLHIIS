@@ -144,10 +144,12 @@ function Hero({ lang }) {
             )}
           </div>
           <div className="hero-ctas">
-            <a href="https://wa.me/5215531650560" target="_blank" rel="noopener" className="btn-primary btn-halo">
+            <a href="https://wa.me/5215531650560" target="_blank" rel="noopener" className="btn-primary btn-halo"
+              onClick={() => gtag('event', 'cta_click', { cta_location: 'hero', cta_label: 'whatsapp' })}>
               {tx.cta1} →
             </a>
-            <a href="#proyectos" className="btn-secondary">
+            <a href="#proyectos" className="btn-secondary"
+              onClick={() => gtag('event', 'cta_click', { cta_location: 'hero', cta_label: 'ver_proyectos' })}>
               {tx.cta2}
             </a>
           </div>

@@ -207,7 +207,8 @@ function Proyectos({ lang }) {
             <div className="eyebrow">{tx.software}</div>
             <h3 className="lhiis-title">{tx.softwareTitle}</h3>
             <p className="lhiis-desc">{tx.softwareDesc}</p>
-            <a href="https://lhiis-brochure-gv3ee74.gamma.site/brochureservicios" target="_blank" rel="noopener" className="btn-primary btn-halo">
+            <a href="https://lhiis-brochure-gv3ee74.gamma.site/brochureservicios" target="_blank" rel="noopener" className="btn-primary btn-halo"
+              onClick={() => gtag('event', 'cta_click', { cta_location: 'lhiis_block', cta_label: 'brochure_lhiis' })}>
               {tx.softwareCta} →
             </a>
           </div>
@@ -276,7 +277,8 @@ function Blog({ lang }) {
           )}
         </div>
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
-          <a href="https://substack.com/@heliosrc" target="_blank" rel="noopener" className="btn-secondary">{tx.cta}</a>
+          <a href="https://substack.com/@heliosrc" target="_blank" rel="noopener" className="btn-secondary"
+            onClick={() => gtag('event', 'cta_click', { cta_location: 'blog', cta_label: 'ver_substack' })}>{tx.cta}</a>
         </div>
       </div>
     </section>);
@@ -399,6 +401,7 @@ function ParaQuienCTA({ lang, cta, closing }) {
         target="_blank"
         rel="noopener"
         className="btn-primary btn-halo pq-btn"
+        onClick={() => gtag('event', 'cta_click', { cta_location: 'para_quien', cta_label: 'whatsapp' })}
       >
         {cta} →
       </a>
@@ -537,12 +540,14 @@ function CTAFinal({ lang }) {
         <p className="cta-sub">{tx.sub}</p>
         <div className="cta-buttons">
           <div className="cta-option">
-            <a href="https://wa.me/5215531650560" target="_blank" rel="noopener" className="btn-primary btn-halo btn-lg">{tx.btnA} →</a>
+            <a href="https://wa.me/5215531650560" target="_blank" rel="noopener" className="btn-primary btn-halo btn-lg"
+              onClick={() => gtag('event', 'cta_click', { cta_location: 'cta_final', cta_label: 'whatsapp' })}>{tx.btnA} →</a>
             <p className="cta-desc mono-label">{tx.descA}</p>
           </div>
           <div className="cta-divider mono-label">o</div>
           <div className="cta-option">
-            <a href="https://lhiis.com" target="_blank" rel="noopener" className="btn-secondary btn-lg">{tx.btnB}</a>
+            <a href="https://lhiis.com" target="_blank" rel="noopener" className="btn-secondary btn-lg"
+              onClick={() => gtag('event', 'cta_click', { cta_location: 'cta_final', cta_label: 'ver_lhiis' })}>{tx.btnB}</a>
             <p className="cta-desc mono-label">{tx.descB}</p>
           </div>
         </div>
