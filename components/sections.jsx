@@ -134,7 +134,7 @@ function AnimatedBar({ height, delay }) {
   return <div className="anim-bar" style={{ height: `${h}%`, transitionDelay: `${delay * 0.1}s` }}></div>;
 }
 
-function ProjectCard({ cat, title, desc, ctaLabel, ctaHref, lang, metric, metricLabel }) {
+function ProjectCard({ cat, title, desc, ctaLabel, ctaHref, lang, metric, metricLabel, gaLabel }) {
   return (
     <div className="project-card glass-card">
       <div className="project-chart" aria-hidden="true">
@@ -146,7 +146,8 @@ function ProjectCard({ cat, title, desc, ctaLabel, ctaHref, lang, metric, metric
       </div>
       <h3 className="project-title">{title}</h3>
       <p className="project-desc">{desc}</p>
-      <a href={ctaHref || 'https://substack.com/@heliosrc'} target="_blank" rel="noopener" className="btn-secondary btn-sm">
+      <a href={ctaHref || 'https://substack.com/@heliosrc'} target="_blank" rel="noopener" className="btn-secondary btn-sm"
+        onClick={() => gtag('event', 'cta_click', { cta_location: 'proyectos', cta_label: gaLabel || ctaHref })}>
         {ctaLabel} →
       </a>
     </div>);
@@ -166,9 +167,9 @@ function Proyectos({ lang }) {
       softwareDesc: 'Si el diagnóstico apunta a construir software, un chatbot o un agente de IA, el equipo de LHIIS entra al proyecto.',
       softwareCta: 'Ver servicios de LHIIS',
       cards: [
-      { cat: 'Videojuegos · Diagnóstico', title: 'Cuando un estudio de videojuegos decidió operar con sistemas, no con intuición', desc: 'Diagnóstico completo para estudio mexicano con 80 colaboradores. 9 retos críticos identificados. La empresa creó un rol formal de IA.', metric: '9', metricLabel: 'retos críticos', ctaLabel: 'Leer caso' },
-      { cat: 'Seguridad · IA Comercial', title: 'Cómo una empresa de seguridad escaló su operación sin contratar a nadie más', desc: 'Integración de Claude y Gemini dentro de Google Workspace para el área comercial. Capacitaciones de IA agéntica al equipo.', metric: '2×', metricLabel: 'velocidad comercial', ctaLabel: 'Leer caso' },
-      { cat: 'Seguridad / SaaS · En curso', title: 'El sector de seguridad privada en México opera sin sistemas. Eso está cambiando.', desc: 'Construcción de plataforma para profesionalizar la operación de empresas de seguridad privada en México.', metric: '∞', metricLabel: 'impacto potencial', ctaLabel: 'Leer caso' }]
+      { cat: 'VIDEOJUEGOS · DIAGNÓSTICO', title: 'Cuando un estudio de videojuegos decidió operar con sistemas, no con intuición', desc: 'Diagnóstico completo para estudio mexicano con 80 colaboradores. 9 retos críticos identificados. La empresa creó un rol formal de inteligencia artificial.', metric: '9', metricLabel: 'RETOS CRÍTICOS', ctaLabel: 'Leer caso', ctaHref: 'https://lhiisbc.substack.com/p/hyperbeard-games-diagnostico-organizacional?r=8byzvg', gaLabel: 'caso_hyperbeard' },
+      { cat: 'SALUD · VETERINARIA', title: 'Una artesana que construyó todo sola durante 16 años, y lo que encontró cuando se detuvo a mirar', desc: 'Diagnóstico organizacional para clínica especializada en imagenología veterinaria. Propuesta de automatización del proceso comercial con agentes de inteligencia artificial.', metric: '16 AÑOS → 1 SEMANA', metricLabel: '', ctaLabel: 'Leer caso', ctaHref: 'https://lhiisbc.substack.com/p/ecovet-diagnostico-organizacional?r=8byzvg', gaLabel: 'caso_ecovet' },
+      { cat: 'SEGURIDAD / SAAS · EN CURSO', title: 'El sector de seguridad privada en México opera sin sistemas. Eso está cambiando.', desc: 'Construcción de plataforma para profesionalizar la operación de empresas de seguridad privada en México, un sector que históricamente ha dependido de procesos manuales.', metric: '∞', metricLabel: 'IMPACTO POTENCIAL', ctaLabel: 'Leer caso', ctaHref: 'https://lhiisbc.substack.com/p/boi-de-una-conversacion-sobre-un?r=8byzvg', gaLabel: 'caso_boi' }]
 
     },
     en: {
@@ -182,9 +183,9 @@ function Proyectos({ lang }) {
       softwareDesc: "If the diagnosis points to building software, a chatbot or an AI agent, the LHIIS team joins the project.",
       softwareCta: 'See LHIIS services',
       cards: [
-      { cat: 'Gaming · Org. Diagnosis', title: 'When a game studio decided to operate with systems, not intuition', desc: 'Full diagnosis for a Mexican studio with 80 people. 9 critical challenges identified. The company created a formal AI role.', metric: '9', metricLabel: 'critical challenges', ctaLabel: 'Read case' },
-      { cat: 'Security · AI Implementation', title: 'How a security company scaled operations without hiring anyone else', desc: 'Claude and Gemini integrated into Google Workspace for the commercial team. Agentic AI training delivered to the full team.', metric: '2×', metricLabel: 'commercial speed', ctaLabel: 'Read case' },
-      { cat: 'Security / SaaS · In progress', title: "Mexico's private security sector runs without systems. That's changing.", desc: 'Building a platform to professionalize operations for private security companies in Mexico.', metric: '∞', metricLabel: 'potential impact', ctaLabel: 'Read case' }]
+      { cat: 'GAMING · DIAGNOSIS', title: 'When a game studio decided to operate with systems, not intuition', desc: 'Full organizational diagnosis for a Mexican studio with 80 people. 9 critical challenges identified. The company created a formal artificial intelligence role.', metric: '9', metricLabel: 'CRITICAL CHALLENGES', ctaLabel: 'Read case', ctaHref: 'https://lhiisbc.substack.com/p/hyperbeard-games-diagnostico-organizacional?r=8byzvg', gaLabel: 'caso_hyperbeard' },
+      { cat: 'HEALTH · VETERINARY', title: 'An artisan who built everything alone for 16 years, and what she found when she stopped to look', desc: 'Organizational diagnosis for a veterinary imaging clinic. Proposal to automate the commercial process with artificial intelligence agents.', metric: '16 YRS → 1 WEEK', metricLabel: '', ctaLabel: 'Read case', ctaHref: 'https://lhiisbc.substack.com/p/ecovet-diagnostico-organizacional?r=8byzvg', gaLabel: 'caso_ecovet' },
+      { cat: 'SECURITY / SAAS · IN PROGRESS', title: "Mexico's private security sector runs without systems. That's changing.", desc: "Building a platform to professionalize the operations of private security companies in Mexico, a sector that has historically depended on manual processes.", metric: '∞', metricLabel: 'POTENTIAL IMPACT', ctaLabel: 'Read case', ctaHref: 'https://lhiisbc.substack.com/p/boi-de-una-conversacion-sobre-un?r=8byzvg', gaLabel: 'caso_boi' }]
 
     }
   };
