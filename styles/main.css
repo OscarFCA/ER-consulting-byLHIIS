@@ -880,7 +880,7 @@ body {
 
 .blog-img-ph {
   width: 100%;
-  height: 160px;
+  height: 180px;
   background: linear-gradient(135deg, rgba(109,40,217,0.15), rgba(236,72,153,0.1));
   border-bottom: 1px solid rgba(255,255,255,0.05);
   display: flex;
@@ -889,6 +889,16 @@ body {
   position: relative;
   overflow: hidden;
 }
+
+.blog-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.4s ease;
+}
+.blog-card:hover .blog-img { transform: scale(1.03); }
 
 .blog-img-stripe {
   position: absolute;

@@ -226,29 +226,39 @@ function Proyectos({ lang }) {
 
 // ── BLOG ─────────────────────────────────────────────────────────────────────
 function Blog({ lang }) {
-  const t = {
-    es: {
-      eyebrow: 'Escritos',
-      title: 'Ideas que no caben en una reunión.',
-      sub: 'Escribo sobre lo que la IA le hace a las personas, a las organizaciones y a la cultura.',
-      cta: 'Ver escritos',
-      posts: [
-      { cat: 'Inteligencia Artificial', title: 'Por qué los agentes de IA van a reemplazar procesos enteros, no solo tareas', date: 'Abr 2026' },
-      { cat: 'Liderazgo', title: 'El CEO como cuello de botella: cómo los sistemas liberan al fundador', date: 'Mar 2026' },
-      { cat: 'Cultura y Tecnología', title: 'Lo que el pixel art mexicano me enseñó sobre escalar productos digitales', date: 'Feb 2026' }]
-
+  const posts = [
+    {
+      cat_es: 'CASOS · SALUD', cat_en: 'CASES · HEALTH',
+      date: 'MAY 2026',
+      title_es: 'Una artesana que decidió escalar, y lo que encontró cuando se detuvo a mirar',
+      title_en: 'An artisan who decided to scale, and what she found when she stopped to look',
+      img: 'uploads/banner-artesana.png',
+      href: 'https://lhiis.substack.com/p/una-artesana-que-decidio-escalar?r=7w4lz',
+      ga: 'blog_artesana',
     },
-    en: {
-      eyebrow: 'Writing',
-      title: "Ideas that don't fit in a meeting.",
-      sub: 'I write about what AI does to people, organizations and culture.',
-      cta: 'Read writing',
-      posts: [
-      { cat: 'Artificial Intelligence', title: 'Why AI agents will replace entire processes, not just tasks', date: 'Apr 2026' },
-      { cat: 'Leadership', title: 'The CEO as bottleneck: how systems free the founder', date: 'Mar 2026' },
-      { cat: 'Culture & Technology', title: 'What Mexican pixel art taught me about scaling digital products', date: 'Feb 2026' }]
+    {
+      cat_es: 'INTELIGENCIA ARTIFICIAL', cat_en: 'ARTIFICIAL INTELLIGENCE',
+      date: 'MAY 2026',
+      title_es: 'La mayoría usa la inteligencia artificial como un buscador glorificado',
+      title_en: 'Most people use artificial intelligence like a glorified search engine',
+      img: 'uploads/banner-ia-buscador.png',
+      href: 'https://lhiis.substack.com/p/la-mayoria-usa-la-inteligencia-artificial?r=7w4lz',
+      ga: 'blog_ia_buscador',
+    },
+    {
+      cat_es: 'LIDERAZGO · EMPRESAS', cat_en: 'LEADERSHIP · BUSINESS',
+      date: 'MAY 2026',
+      title_es: 'El CEO como cuello de botella: cómo los sistemas liberan al fundador',
+      title_en: 'The CEO as bottleneck: how systems free the founder',
+      img: 'uploads/banner-ceo-cuello.png',
+      href: 'https://lhiis.substack.com/p/el-ceo-como-cuello-de-botella-como?r=7w4lz',
+      ga: 'blog_ceo_cuello',
+    },
+  ];
 
-    }
+  const t = {
+    es: { eyebrow: 'Escritos', title: 'Ideas que no caben en una reunión.', sub: 'Escribo sobre lo que la IA le hace a las personas, a las organizaciones y a la cultura.', cta: 'Ver escritos' },
+    en: { eyebrow: 'Writing', title: "Ideas that don't fit in a meeting.", sub: 'I write about what AI does to people, organizations and culture.', cta: 'Read writing' },
   };
   const tx = t[lang];
 
@@ -259,22 +269,18 @@ function Blog({ lang }) {
         <h2 className="section-title">{tx.title}</h2>
         <p className="section-sub">{tx.sub}</p>
         <div className="blog-grid">
-          {tx.posts.map((p, i) =>
-          <a key={i} href="https://substack.com/@heliosrc" target="_blank" rel="noopener" className="blog-card glass-card">
-              <div className="blog-img-ph">
-                <div className="blog-img-stripe"></div>
-                <span className="mono-label" style={{ color: 'rgba(255,255,255,0.2)', fontSize: '10px', position: 'relative', zIndex: 1 }}>
-                  {i === 0 ? 'AI · ORG' : i === 1 ? 'STRATEGY' : 'CULTURE · TECH'}
-                </span>
-              </div>
-              <div className="blog-meta">
-                <span className="blog-cat mono-label">{p.cat}</span>
+          {posts.map((p, i) => (
+            <a key={i} href={p.href} target="_blank" rel="noopener" className="blog-card glass-card"
+              onClick={() => gtag('event', 'cta_click', { cta_location: 'blog', cta_label: p.ga })}>
+              <img src={p.img} alt={lang === 'es' ? p.title_es : p.title_en} className="blog-img" />
+              <div className="blog-meta" style={{ padding: '0 20px' }}>
+                <span className="blog-cat mono-label">{lang === 'es' ? p.cat_es : p.cat_en}</span>
                 <span className="blog-date mono-label">{p.date}</span>
               </div>
-              <h3 className="blog-title">{p.title}</h3>
-              <span className="blog-read grad-text">Substack @heliosrc →</span>
+              <h3 className="blog-title" style={{ padding: '0 20px' }}>{lang === 'es' ? p.title_es : p.title_en}</h3>
+              <span className="blog-read grad-text" style={{ padding: '0 20px' }}>Substack @heliosrc →</span>
             </a>
-          )}
+          ))}
         </div>
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
           <a href="https://substack.com/@heliosrc" target="_blank" rel="noopener" className="btn-secondary"
@@ -282,7 +288,6 @@ function Blog({ lang }) {
         </div>
       </div>
     </section>);
-
 }
 
 // ── AVATAR FLIP CARD ─────────────────────────────────────────────
